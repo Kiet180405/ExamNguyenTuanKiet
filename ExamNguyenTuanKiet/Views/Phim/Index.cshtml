@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Exam_TranQuangNha.Models.Phim>
+@{
+    ViewData["Title"] = "Student List";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between mb-3">
+        <h2>@ViewData["Title"]</h2>
+        <a asp-action="Add">
+            <i class="bi bi-patch-plus-fill"></i> Add
+        </a>
+
+    </div>
+    <h1>DANH SÁCH PHIM</h1>
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th style="display: none;">ID</th>
+                <th>Tựa Đề</th>
+                <th>Thể Loại</th>
+                <th>Giá Vé</th>
+				<th>Thời Lượng</th>
+                <th style="width: 150px;">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td style="display: none;">@item.Id</td>
+                    <td>@item.TuaDe</td>
+                    <td>@item.TrongNuoc</td>
+                    <td>@item.GiaVe</td>
+					<td>@item.ThoiLuong</td>
+                    <td>
+                        <a asp-route-page="@ViewBag.CurrentPage" asp-action="Update" asp-route-id="@item.Id"><i class="bi bi-pen"></i> </a>
+                        <a asp-route-page="@ViewBag.CurrentPage" asp-action="Delete" asp-route-id="@item.Id"><i class="bi bi-trash3"></i> </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
